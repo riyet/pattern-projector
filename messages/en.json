@@ -195,9 +195,9 @@
     "ok": "OK"
   },
   "Mail": {
-      "title": "You've got mail",
-      "donate": "Donate"
-    },
+    "title": "You've got mail",
+    "donate": "Donate"
+  },
   "Troubleshooting": {
     "notMatching": "Lines not matching your mat?",
     "title": "Calibration Troubleshooting",
@@ -330,5 +330,25 @@
   "PdfViewer": {
     "error": "Failed to load pattern",
     "noData": "Press the \"Open\" button to load a pattern"
+  },
+  "TraceCanvas": {
+    "undo": "Undo",
+    "redo": "Redo",
+    "finish": "Finish line",
+    "close": "Close shape",
+    "color": "Colour",
+    "thickness": "Thickness (mm)",
+    "exportSvg": "Export SVG",
+    "save": "Save project",
+    "open": "Open project",
+    "exit": "Exit trace",
+    "toggle": "Trace mode",
+    "invalidFile": "Not a valid trace project file.",
+    "tool_line": "Line",
+    "tool_curve": "Curve",
+    "tool_edit": "Edit",
+    "magnifier": "Magnifier",
+    "toggleCorner": "Corner/Smooth (C)",
+    "deletePoint": "Delete point"
   }
 }

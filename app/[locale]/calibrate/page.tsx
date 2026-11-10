@@ -47,6 +47,7 @@ import CalibrationContext, {
 import WarningIcon from "@/_icons/warning-icon";
 import PdfViewer from "@/_components/pdf-viewer";
 import { Transformable } from "@/_hooks/use-transform-context";
+import TraceCanvas from "@/_components/canvases/trace-canvas";
 import OverlayCanvas from "@/_components/canvases/overlay-canvas";
 import stitchSettingsReducer from "@/_reducers/stitchSettingsReducer";
 import {
@@ -120,6 +121,7 @@ export default function Page() {
   const [layoutHeight, setLayoutHeight] = useState<number>(0);
   const [lineThickness, setLineThickness] = useState<number>(0);
   const [measuring, setMeasuring] = useState<boolean>(false);
+  const [tracing, setTracing] = useState<boolean>(false);
   const [magnifying, setMagnifying] = useState<boolean>(false);
   const [zoomedOut, setZoomedOut] = useState<boolean>(false);
   const [menusHidden, setMenusHidden] = useState<boolean>(false);
@@ -159,6 +161,7 @@ export default function Page() {
 
   const t = useTranslations("Header");
   const g = useTranslations("General");
+  const tTrace = useTranslations("TraceCanvas");
 
   const IDLE_TIMEOUT = 8000;
 
@@ -684,6 +687,21 @@ export default function Page() {
               />
             </MeasureCanvas>
 
+            {tracing && !isCalibrating && (
+              <TraceCanvas
+                calibrationTransform={calibrationTransform}
+                onClose={() => setTracing(false)}
+              />
+            )}
+            {!tracing && !isCalibrating && (
+              <button
+                type="button"
+                className="absolute bottom-2 right-2 px-2 py-1 rounded border-2 border-black dark:border-white bg-white dark:bg-black text-sm z-50"
+                onClick={() => setTracing(true)}
+              >
+                {tTrace("toggle")}
+              </button>
+            )}
             <menu
               className={`absolute w-screen ${visible(!menusHidden)} ${menuStates.nav ? "top-0" : "-top-16"} pointer-events-none`}
             >
