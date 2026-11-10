@@ -1,3 +1,4 @@
+import { flattenPath, pathCommands } from "@/_lib/trace/spline";
 import { TraceDocument, TracePath } from "@/_lib/trace/types";
 
 const MARGIN_MM = 5;
@@ -11,16 +12,23 @@ function escapeAttr(s: string): string {
 }
 
 function pathData(path: TracePath): string {
-  const parts = path.nodes.map(
-    (n, i) => `${i === 0 ? "M" : "L"}${fmt(n.x)} ${fmt(n.y)}`,
-  );
-  if (path.closed) parts.push("Z");
-  return parts.join(" ");
+  return pathCommands(path)
+    .map((c) => {
+      switch (c.type) {
+        case "Z":
+          return "Z";
+        case "C":
+          return `C${fmt(c.c1.x)} ${fmt(c.c1.y)} ${fmt(c.c2.x)} ${fmt(c.c2.y)} ${fmt(c.p.x)} ${fmt(c.p.y)}`;
+        default:
+          return `${c.type}${fmt(c.p.x)} ${fmt(c.p.y)}`;
+      }
+    })
+    .join(" ");
 }
 
 /** Exports at true scale: user units are millimetres and width/height are in mm. */
 export function exportSvg(doc: TraceDocument): string {
-  const nodes = doc.paths.flatMap((p) => p.nodes);
+  const nodes = doc.paths.flatMap((p) => flattenPath(p));
   let minX = 0;
   let minY = 0;
   let maxX = 100;

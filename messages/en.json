@@ -343,6 +343,12 @@
     "open": "Open project",
     "exit": "Exit trace",
     "toggle": "Trace mode",
-    "invalidFile": "Not a valid trace project file."
+    "invalidFile": "Not a valid trace project file.",
+    "tool_line": "Line",
+    "tool_curve": "Curve",
+    "tool_edit": "Edit",
+    "magnifier": "Magnifier",
+    "toggleCorner": "Corner/Smooth (C)",
+    "deletePoint": "Delete point"
   }
 }

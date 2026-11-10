@@ -17,6 +17,8 @@ export interface TracePath {
   layerId: string;
   nodes: TraceNode[];
   closed: boolean;
+  /** Smooth spline through the nodes (corner nodes break it); otherwise straight segments. */
+  curve?: boolean;
 }
 
 export interface TraceStyle {

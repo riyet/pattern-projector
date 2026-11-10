@@ -42,6 +42,7 @@ export function parseDocument(text: string): TraceDocument {
       id: p.id,
       layerId: p.layerId,
       closed: p.closed === true,
+      ...(p.curve === true ? { curve: true } : {}),
       nodes: p.nodes.map((n: any) =>
         n.corner ? { x: n.x, y: n.y, corner: true } : { x: n.x, y: n.y },
       ),
